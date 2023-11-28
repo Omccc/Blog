@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,9 +28,12 @@
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
     }
 
-    input, textarea {
+    input,
+    textarea {
       margin-bottom: 10px;
       padding: 8px;
       width: 100%;
@@ -43,6 +47,7 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -81,6 +86,7 @@
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .delete-button:hover {
@@ -88,7 +94,12 @@
     }
   </style>
 </head>
+
 <body>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+
+    <dotlottie-player src="https://lottie.host/0b12fbc7-20d2-4f93-9eba-443a233e3503/TANPHAe5nc.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
   <h1>My Personal Blog</h1>
   <div id="article-form">
     <input type="text" id="article-title" placeholder="Article Title">
@@ -96,6 +107,7 @@
     <button onclick="addArticle()">Add Article</button>
   </div>
   <div id="articles"></div>
+
   <script>
     const articles = [];
 
@@ -153,4 +165,5 @@
     displayArticles();
   </script>
 </body>
+
 </html>
