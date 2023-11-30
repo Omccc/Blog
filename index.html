@@ -2,10 +2,14 @@
 <html lang="en">
 
 <head>
+  <!-- Meta tags for character set and viewport settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title of the page -->
   <title>My Personal Blog</title>
+  <!-- External CSS file for styles -->
   <link rel="stylesheet" href="styles-blog-js.css">
+  <!-- Internal styles for additional styling -->
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -95,40 +99,52 @@
   </style>
 </head>
 
+<!-- External JavaScript library for Lottie animations -->
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+<!-- Lottie animation for visual appeal -->
+<dotlottie-player src="https://lottie.host/0b12fbc7-20d2-4f93-9eba-443a233e3503/TANPHAe5nc.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
 <body>
-
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-
-    <dotlottie-player src="https://lottie.host/0b12fbc7-20d2-4f93-9eba-443a233e3503/TANPHAe5nc.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+  <!-- Heading for the "My Personal Blog" webpage -->
   <h1>My Personal Blog</h1>
+  <!-- Form for adding new articles -->
   <div id="article-form">
     <input type="text" id="article-title" placeholder="Article Title">
     <textarea id="article-content" placeholder="Article Content"></textarea>
     <button onclick="addArticle()">Add Article</button>
   </div>
+  <!-- Container for displaying articles -->
   <div id="articles"></div>
 
+  <!-- JavaScript script for dynamic functionality -->
   <script>
+    // Array to store blog articles
     const articles = [];
 
+    // Function to add a new article to the array
     function addArticle() {
       const title = document.getElementById("article-title").value;
       const content = document.getElementById("article-content").value;
 
+      // Check if title or content is empty, and return if either is
       if (title.trim() === "" || content.trim() === "") {
         return;
       }
 
+      // Create an article object and add it to the array
       const article = { title, content };
       articles.push(article);
+      // Update the displayed articles and reset input fields
       displayArticles();
       resetInputFields();
     }
 
+    // Function to display articles in the specified container
     function displayArticles() {
       const articlesContainer = document.getElementById("articles");
       articlesContainer.innerHTML = "";
 
+      // Iterate through each article and create corresponding elements
       articles.forEach((article, index) => {
         const articleDiv = document.createElement("div");
         articleDiv.classList.add("article");
@@ -142,26 +158,33 @@
         const deleteButton = document.createElement("button");
         deleteButton.classList.add("delete-button");
         deleteButton.textContent = "Delete";
+        // Set up click event for the delete button
         deleteButton.onclick = () => deleteArticle(index);
 
+        // Append elements to the article container
         articleDiv.appendChild(title);
         articleDiv.appendChild(content);
         articleDiv.appendChild(deleteButton);
 
+        // Append article container to the articles container
         articlesContainer.appendChild(articleDiv);
       });
     }
 
+    // Function to delete an article at the specified index
     function deleteArticle(index) {
       articles.splice(index, 1);
+      // Update the displayed articles after deletion
       displayArticles();
     }
 
+    // Function to reset input fields after adding an article
     function resetInputFields() {
       document.getElementById("article-title").value = "";
       document.getElementById("article-content").value = "";
     }
 
+    // Initial display of articles when the page loads
     displayArticles();
   </script>
 </body>
